@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<language id="44"> 
+
+	<page id="2008">
+		<t id="7850">CMD_MEMIA_CFSPP</t>
+	</page>
+
+	<page id="2010"> 
+		<t id="7850">Memia Crystal Free SPP</t>
+	</page> 
+
+	<page id="2011"> 
+		<t id="7850">MCFSPP</t>
+	</page> 
+
+	<page id="7850" title="MCFSPP" descr="Memia Crystal Free SPP">
+		<t id="1">\033YCrystal Free Solar Power Plant\033X</t>
+	</page>
+
+</language>

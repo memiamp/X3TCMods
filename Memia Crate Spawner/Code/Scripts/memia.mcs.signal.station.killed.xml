@@ -1,0 +1,192 @@
+<?xml version="1.0" standalone="yes"?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl"?>
+<!--Produced externally by the Exscriptor-->
+<script>
+   <name>memia.mcs.signal.station.killed</name>
+   <version>1.00</version>
+   <engineversion>50</engineversion>
+   <description>Memia Crate Spawner (Station Killed Signal Handler)</description>
+   <arguments>
+      <argument index="0" name="killer" type="Value" desc="The killer of the ship" />
+      <argument index="1" name="command" type="Object Command" desc="The command" />
+      <argument index="2" name="target1" type="Value" desc="Target 1" />
+      <argument index="3" name="target2" type="Value" desc="Target 2" />
+      <argument index="4" name="param1" type="Value" desc="Parameter 1" />
+      <argument index="5" name="param2" type="Value" desc="Parameter 2" />
+   </arguments>
+   <sourcetext>
+      <line linenr="001" indent=""><comment>* Memia Crate Spawner</comment></line>
+      <line linenr="002" indent=""><comment>* </comment></line>
+      <line linenr="003" indent=""><comment>* Station Killed Signal</comment></line>
+      <line linenr="004" indent=""><comment>* </comment></line>
+      <line linenr="005" indent=""><comment>* Version 1.00  18/07/2013</comment></line>
+      <line linenr="006" indent=""> </line>
+      <line linenr="007" indent=""><comment>* Check the station has not already generated crates</comment></line>
+      <line linenr="008" indent=""><text></text><var>$hasDropped =</var><text> </text><var>[THIS]</var><text>  ->  get local variable: name=</text><var>'memia.mcs.hasdropped'</var><text></text></line>
+      <line linenr="009" indent=""><var>if not </var><text></text><var>$hasDropped </var><text></text></line>
+      <line linenr="010" indent="&#160;"><comment>* Prevents from spawning crates again</comment></line>
+      <line linenr="011" indent="&#160;"><text></text><var>[THIS]</var><text>  ->  set local variable: name=</text><var>'memia.mcs.hasdropped'</var><text> value=</text><var>[TRUE]</var><text></text></line>
+      <line linenr="012" indent="&#160;"> </line>
+      <line linenr="013" indent="&#160;"><comment>* Create crates</comment></line>
+      <line linenr="014" indent="&#160;" interruptable="@"><text></text><var> =</var><text> </text><var>[THIS]</var><text></text><var> -> </var><text>call script </text><var></var><call>memia.mcs.dropcrates</call><var></var><text> : Target for dropping crates=</text><var>[THIS]</var><text> </text></line>
+      <line linenr="015" indent=""><text>end</text></line>
+      <line linenr="016" indent=""> </line>
+      <line linenr="017" indent=""><text>return </text><var>null</var><text></text></line>
+      <line linenr="018" indent=""> </line>
+      <line linenr="019" indent=""> </line>
+   </sourcetext>
+   <codearray>
+      <sval type="array" size="10">
+         <sval type="string" val="memia.mcs.signal.station.killed" />
+         <sval type="int" val="50" />
+         <sval type="string" val="Memia Crate Spawner (Station Killed Signal Handler)" />
+         <sval type="int" val="1.00" />
+         <sval type="int" val="0" />
+         <sval type="array" size="7">
+            <sval type="string" val="killer" />
+            <sval type="string" val="command" />
+            <sval type="string" val="target1" />
+            <sval type="string" val="target2" />
+            <sval type="string" val="param1" />
+            <sval type="string" val="param2" />
+            <sval type="string" val="hasDropped" />
+         </sval>
+         <sval type="array" size="5">
+            <sval type="array" size="6">
+               <sval type="int" val="156" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="1" />
+               <sval type="int" val="5" />
+               <sval type="string" val="memia.mcs.hasdropped" />
+               <sval type="int" val="6" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="-536869884" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="6" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="155" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="1" />
+               <sval type="int" val="5" />
+               <sval type="string" val="memia.mcs.hasdropped" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="10" />
+            </sval>
+            <sval type="array" size="8">
+               <sval type="int" val="102" />
+               <sval type="string" val="memia.mcs.dropcrates" />
+               <sval type="int" val="-2147483647" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="1" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="1" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="103" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+            </sval>
+         </sval>
+         <sval type="array" size="6">
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="string" val="The killer of the ship" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="31" />
+               <sval type="string" val="The command" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="string" val="Target 1" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="string" val="Target 2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="string" val="Parameter 1" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="string" val="Parameter 2" />
+            </sval>
+         </sval>
+         <sval type="array" size="14">
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Memia Crate Spawner" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Station Killed Signal" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Version 1.00  18/07/2013" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="0" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Check the station has not already generated crates" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="2" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Prevents from spawning crates again" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="3" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="3" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Create crates" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="4" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="4" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="5" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="5" />
+               <sval type="int" val="2" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+      </sval>
+   </codearray>
+</script>

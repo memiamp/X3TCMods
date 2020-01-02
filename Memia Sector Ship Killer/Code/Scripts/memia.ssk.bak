@@ -1,0 +1,792 @@
+<?xml version="1.0" standalone="yes"?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl"?>
+<!--Produced externally by the Exscriptor-->
+<script>
+   <name>memia.ssk</name>
+   <version>9</version>
+   <engineversion>50</engineversion>
+   <description>Memia Sector Ship Killer</description>
+   <arguments>
+      <argument index="0" name="TargetRace" type="Var/Race" desc="The Race to Kill" />
+   </arguments>
+   <sourcetext>
+      <line linenr="001" indent=""><comment>* Memia Sector Ship Killer</comment></line>
+      <line linenr="002" indent=""><comment>* </comment></line>
+      <line linenr="003" indent=""><comment>* Main Script</comment></line>
+      <line linenr="004" indent=""><comment>* </comment></line>
+      <line linenr="005" indent=""><comment>* Version 1.00  27/06/2013</comment></line>
+      <line linenr="006" indent=""> </line>
+      <line linenr="007" indent=""><comment>* Get a list of player-owned sectors</comment></line>
+      <line linenr="008" indent=""><text></text><var>$sectors =</var><text> = array alloc: size=</text><var>0</var><text></text></line>
+      <line linenr="009" indent=""><text></text><var>$x =</var><text> = get max sectors in x direction</text></line>
+      <line linenr="010" indent=""><var>while </var><text></text><var>$x </var><text></text></line>
+      <line linenr="011" indent="&#160;"><text>dec </text><var>$x</var><text> =</text></line>
+      <line linenr="012" indent="&#160;"> </line>
+      <line linenr="013" indent="&#160;"><text></text><var>$y =</var><text> = get max sectors in y direction</text></line>
+      <line linenr="014" indent="&#160;"><var>while </var><text></text><var>$y </var><text></text></line>
+      <line linenr="015" indent="&#160;&#160;"><text>dec </text><var>$y</var><text> =</text></line>
+      <line linenr="016" indent="&#160;&#160;"> </line>
+      <line linenr="017" indent="&#160;&#160;"><text></text><var>$sector =</var><text> get sector from universe index: x=</text><var>$x</var><text>, y=</text><var>$y</var><text></text></line>
+      <line linenr="018" indent="&#160;&#160;"><var>if </var><text></text><var>$sector </var><text></text></line>
+      <line linenr="019" indent="&#160;&#160;&#160;"><text></text><var>$temp =</var><text> </text><var>$sector</var><text>  ->  get owner race</text></line>
+      <line linenr="020" indent="&#160;&#160;&#160;"><var>if </var><text></text><var>$temp == Player </var><text></text></line>
+      <line linenr="021" indent="&#160;&#160;&#160;&#160;"><text>append </text><var>$sector</var><text> to array </text><var>$sectors</var><text></text></line>
+      <line linenr="022" indent="&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="023" indent="&#160;&#160;"><text>end</text></line>
+      <line linenr="024" indent="&#160;&#160;"> </line>
+      <line linenr="025" indent="&#160;&#160;" interruptable="@"><text></text><var> =</var><text> wait </text><var>0</var><text> ms</text></line>
+      <line linenr="026" indent="&#160;"><text>end</text></line>
+      <line linenr="027" indent=""><text>end</text></line>
+      <line linenr="028" indent=""> </line>
+      <line linenr="029" indent=""><comment>* Go through player-owned sectors</comment></line>
+      <line linenr="030" indent=""><text></text><var>$sectorSize =</var><text> size of array </text><var>$sectors</var><text></text></line>
+      <line linenr="031" indent=""><var>if </var><text></text><var>$sectorSize &gt; 0 </var><text></text></line>
+      <line linenr="032" indent="&#160;"><var>$sectorNum = </var><text></text><var>0 </var><text></text></line>
+      <line linenr="033" indent="&#160;"> </line>
+      <line linenr="034" indent="&#160;"><var>while </var><text></text><var>$sectorNum &lt; $sectorSize </var><text></text></line>
+      <line linenr="035" indent="&#160;&#160;"><text></text><var>$sector =</var><text> </text><var>$sectors</var><text>[</text><var>$sectorNum</var><text>]</text></line>
+      <line linenr="036" indent="&#160;&#160;"> </line>
+      <line linenr="037" indent="&#160;&#160;"><comment>* Analyse sector</comment></line>
+      <line linenr="038" indent="&#160;&#160;"><var>if </var><text></text><var>$sector != null </var><text></text></line>
+      <line linenr="039" indent="&#160;&#160;&#160;"><comment>* Go through ships</comment></line>
+      <line linenr="040" indent="&#160;&#160;&#160;"><text></text><var>$ships =</var><text> = </text><var>$sector</var><text>  ->  get ship array from sector/ship/station</text></line>
+      <line linenr="041" indent="&#160;&#160;&#160;"><var>$shipNum = </var><text></text><var>0 </var><text></text></line>
+      <line linenr="042" indent="&#160;&#160;&#160;"><text></text><var>$shipSize =</var><text> size of array </text><var>$ships</var><text></text></line>
+      <line linenr="043" indent="&#160;&#160;&#160;"> </line>
+      <line linenr="044" indent="&#160;&#160;&#160;"><var>while </var><text></text><var>$shipNum &lt; $shipSize </var><text></text></line>
+      <line linenr="045" indent="&#160;&#160;&#160;&#160;"><text></text><var>$ship =</var><text> </text><var>$ships</var><text>[</text><var>$shipNum</var><text>]</text></line>
+      <line linenr="046" indent="&#160;&#160;&#160;&#160;"><text></text><var>$shipRace =</var><text> </text><var>$ship</var><text>  ->  get owner race</text></line>
+      <line linenr="047" indent="&#160;&#160;&#160;&#160;"> </line>
+      <line linenr="048" indent="&#160;&#160;&#160;&#160;"><comment>* See if ship is target race</comment></line>
+      <line linenr="049" indent="&#160;&#160;&#160;&#160;"><var>if </var><text></text><var>$shipRace == $TargetRace </var><text></text></line>
+      <line linenr="050" indent="&#160;&#160;&#160;&#160;&#160;"><var>$destShip = </var><text></text><var>0 </var><text></text></line>
+      <line linenr="051" indent="&#160;&#160;&#160;&#160;&#160;"> </line>
+      <line linenr="052" indent="&#160;&#160;&#160;&#160;&#160;"><comment>* Check the ship originated in the taken over sector</comment></line>
+      <line linenr="053" indent="&#160;&#160;&#160;&#160;&#160;"><text></text><var>$homesect =</var><text> </text><var>$ship</var><text>  ->  get homesector</text></line>
+      <line linenr="054" indent="&#160;&#160;&#160;&#160;&#160;"><var>if </var><text></text><var>$homesect == $sector </var><text></text></line>
+      <line linenr="055" indent="&#160;&#160;&#160;&#160;&#160;&#160;"><var>$destShip = </var><text></text><var>1 </var><text></text></line>
+      <line linenr="056" indent="&#160;&#160;&#160;&#160;&#160;"><text>else</text></line>
+      <line linenr="057" indent="&#160;&#160;&#160;&#160;&#160;&#160;"><comment>* Check whether the taken over sector is owned by the player</comment></line>
+      <line linenr="058" indent="&#160;&#160;&#160;&#160;&#160;&#160;"><text></text><var>$shipOwner =</var><text> </text><var>$homesect</var><text>  ->  get owner race</text></line>
+      <line linenr="059" indent="&#160;&#160;&#160;&#160;&#160;&#160;"><var>if </var><text></text><var>$shipOwner == Player </var><text></text></line>
+      <line linenr="060" indent="&#160;&#160;&#160;&#160;&#160;&#160;&#160;"><var>$destShip = </var><text></text><var>1 </var><text></text></line>
+      <line linenr="061" indent="&#160;&#160;&#160;&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="062" indent="&#160;&#160;&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="063" indent="&#160;&#160;&#160;&#160;&#160;"> </line>
+      <line linenr="064" indent="&#160;&#160;&#160;&#160;&#160;"><comment>* Check whether to destroy the ship</comment></line>
+      <line linenr="065" indent="&#160;&#160;&#160;&#160;&#160;"><var>if </var><text></text><var>$destShip == 1 </var><text></text></line>
+      <line linenr="066" indent="&#160;&#160;&#160;&#160;&#160;&#160;"><text></text><var>$ship</var><text>  ->  destruct: show no explosion=</text><var>[TRUE]</var><text></text></line>
+      <line linenr="067" indent="&#160;&#160;&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="068" indent="&#160;&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="069" indent="&#160;&#160;&#160;&#160;"> </line>
+      <line linenr="070" indent="&#160;&#160;&#160;&#160;"><text>inc </text><var>$shipNum</var><text> =</text></line>
+      <line linenr="071" indent="&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="072" indent="&#160;&#160;&#160;"> </line>
+      <line linenr="073" indent="&#160;&#160;&#160;"><comment>* Go through stations</comment></line>
+      <line linenr="074" indent="&#160;&#160;&#160;"><text></text><var>$stations =</var><text> = </text><var>$sector</var><text>  ->  get station array from sector</text></line>
+      <line linenr="075" indent="&#160;&#160;&#160;"><var>$stationNum = </var><text></text><var>0 </var><text></text></line>
+      <line linenr="076" indent="&#160;&#160;&#160;"><text></text><var>$stationSize =</var><text> size of array </text><var>$stations</var><text></text></line>
+      <line linenr="077" indent="&#160;&#160;&#160;"><var>while </var><text></text><var>$stationNum &lt; $stationSize </var><text></text></line>
+      <line linenr="078" indent="&#160;&#160;&#160;&#160;"><text></text><var>$station =</var><text> </text><var>$stations</var><text>[</text><var>$stationNum</var><text>]</text></line>
+      <line linenr="079" indent="&#160;&#160;&#160;&#160;"><text></text><var>$stationRace =</var><text> </text><var>$station</var><text>  ->  get owner race</text></line>
+      <line linenr="080" indent="&#160;&#160;&#160;&#160;"> </line>
+      <line linenr="081" indent="&#160;&#160;&#160;&#160;"><comment>* See if station is target race</comment></line>
+      <line linenr="082" indent="&#160;&#160;&#160;&#160;"><var>if </var><text></text><var>$stationRace == $TargetRace </var><text></text></line>
+      <line linenr="083" indent="&#160;&#160;&#160;&#160;&#160;"><text></text><var>$station</var><text>  ->  destruct: show no explosion=</text><var>[TRUE]</var><text></text></line>
+      <line linenr="084" indent="&#160;&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="085" indent="&#160;&#160;&#160;&#160;"> </line>
+      <line linenr="086" indent="&#160;&#160;&#160;&#160;"><text>inc </text><var>$stationNum</var><text> =</text></line>
+      <line linenr="087" indent="&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="088" indent="&#160;&#160;"><text>end</text></line>
+      <line linenr="089" indent="&#160;&#160;"> </line>
+      <line linenr="090" indent="&#160;&#160;"><text>inc </text><var>$sectorNum</var><text> =</text></line>
+      <line linenr="091" indent="&#160;"><text>end</text></line>
+      <line linenr="092" indent=""><text>end</text></line>
+      <line linenr="093" indent=""> </line>
+      <line linenr="094" indent=""><text>return </text><var>null</var><text></text></line>
+      <line linenr="095" indent=""> </line>
+      <line linenr="096" indent=""> </line>
+   </sourcetext>
+   <codearray>
+      <sval type="array" size="10">
+         <sval type="string" val="memia.ssk" />
+         <sval type="int" val="50" />
+         <sval type="string" val="Memia Sector Ship Killer" />
+         <sval type="int" val="9" />
+         <sval type="int" val="0" />
+         <sval type="array" size="21">
+            <sval type="string" val="TargetRace" />
+            <sval type="string" val="sectors" />
+            <sval type="string" val="x" />
+            <sval type="string" val="y" />
+            <sval type="string" val="sector" />
+            <sval type="string" val="temp" />
+            <sval type="string" val="sectorSize" />
+            <sval type="string" val="sectorNum" />
+            <sval type="string" val="ships" />
+            <sval type="string" val="shipNum" />
+            <sval type="string" val="shipSize" />
+            <sval type="string" val="ship" />
+            <sval type="string" val="shipRace" />
+            <sval type="string" val="destShip" />
+            <sval type="string" val="homesect" />
+            <sval type="string" val="shipOwner" />
+            <sval type="string" val="stations" />
+            <sval type="string" val="stationNum" />
+            <sval type="string" val="stationSize" />
+            <sval type="string" val="station" />
+            <sval type="string" val="stationRace" />
+         </sval>
+         <sval type="array" size="53">
+            <sval type="array" size="4">
+               <sval type="int" val="128" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="801" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610608887" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="143" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="802" />
+               <sval type="int" val="3" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610609143" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="3" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="143" />
+               <sval type="int" val="3" />
+            </sval>
+            <sval type="array" size="6">
+               <sval type="int" val="800" />
+               <sval type="int" val="4" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="3" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610609661" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="701" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="4" />
+               <sval type="int" val="5" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610609661" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="5" />
+               <sval type="int" val="10" />
+               <sval type="int" val="10" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="5">
+               <sval type="int" val="135" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="105" />
+               <sval type="int" val="-2147483647" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="5" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="131" />
+               <sval type="int" val="6" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610599421" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="6" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="15" />
+               <sval type="int" val="2" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="2" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="7" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610599415" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="7" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="6" />
+               <sval type="int" val="15" />
+               <sval type="int" val="3" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="6">
+               <sval type="int" val="129" />
+               <sval type="int" val="4" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="7" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610599933" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="15" />
+               <sval type="int" val="1" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="1008" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="4" />
+               <sval type="int" val="8" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="9" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="131" />
+               <sval type="int" val="10" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="8" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610602487" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="9" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="10" />
+               <sval type="int" val="15" />
+               <sval type="int" val="3" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="6">
+               <sval type="int" val="129" />
+               <sval type="int" val="11" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="8" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="9" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="701" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="11" />
+               <sval type="int" val="12" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610603005" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="12" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="0" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="13" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="1162" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="11" />
+               <sval type="int" val="14" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610604285" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="14" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="4" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="13" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="36" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="701" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="14" />
+               <sval type="int" val="15" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610603517" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="15" />
+               <sval type="int" val="10" />
+               <sval type="int" val="10" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="13" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610603005" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="13" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="5">
+               <sval type="int" val="765" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="11" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="10" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="142" />
+               <sval type="int" val="9" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="24" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="1009" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="4" />
+               <sval type="int" val="16" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="17" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="131" />
+               <sval type="int" val="18" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="16" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610599927" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="17" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="18" />
+               <sval type="int" val="15" />
+               <sval type="int" val="3" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="6">
+               <sval type="int" val="129" />
+               <sval type="int" val="19" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="16" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="17" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="701" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="19" />
+               <sval type="int" val="20" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610600445" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="20" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="0" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="5">
+               <sval type="int" val="765" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="19" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="10" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="142" />
+               <sval type="int" val="17" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="43" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="142" />
+               <sval type="int" val="7" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="18" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="103" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+            </sval>
+         </sval>
+         <sval type="array" size="1">
+            <sval type="array" size="2">
+               <sval type="int" val="16" />
+               <sval type="string" val="The Race to Kill" />
+            </sval>
+         </sval>
+         <sval type="array" size="49">
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Memia Sector Ship Killer" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Main Script" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Version 1.00  27/06/2013" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="0" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Get a list of player-owned sectors" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="4" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="7" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="12" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="12" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="12" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="14" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="15" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="15" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="15" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Go through player-owned sectors" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="18" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="20" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="20" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Analyse sector" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="21" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Go through ships" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="24" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="27" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="27" />
+               <sval type="int" val="1" />
+               <sval type="string" val="See if ship is target race" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="29" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="29" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Check the ship originated in the taken over sector" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="33" />
+               <sval type="int" val="5" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="33" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Check whether the taken over sector is owned by the player" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="36" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="36" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="36" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="36" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Check whether to destroy the ship" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="38" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="38" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="38" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="40" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="40" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="40" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Go through stations" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="46" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="46" />
+               <sval type="int" val="1" />
+               <sval type="string" val="See if station is target race" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="48" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="48" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="50" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="50" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="50" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="52" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="52" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="52" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="53" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="53" />
+               <sval type="int" val="2" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+      </sval>
+   </codearray>
+</script>

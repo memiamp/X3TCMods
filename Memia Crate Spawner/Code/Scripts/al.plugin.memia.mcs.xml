@@ -1,0 +1,89 @@
+<?xml version="1.0" standalone="yes"?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl"?>
+<!--Produced externally by the Exscriptor-->
+<script>
+   <name>al.plugin.memia.mcs</name>
+   <version>1.00</version>
+   <engineversion>50</engineversion>
+   <description>Memia Crate Spawner (AL Plugin Registration)</description>
+   <arguments />
+   <sourcetext>
+      <line linenr="001" indent=""><comment>* Memia Crate Spawner</comment></line>
+      <line linenr="002" indent=""><comment>* </comment></line>
+      <line linenr="003" indent=""><comment>* AL Plugin Registration</comment></line>
+      <line linenr="004" indent=""><comment>* </comment></line>
+      <line linenr="005" indent=""><comment>* Version 1.00  12/07/2013</comment></line>
+      <line linenr="006" indent=""><text>al engine: register script=</text><var></var><call>al.memia.mcs</call><var></var><text></text></line>
+      <line linenr="007" indent=""><text>return </text><var>null</var><text></text></line>
+      <line linenr="008" indent=""> </line>
+      <line linenr="009" indent=""> </line>
+      <line linenr="010" indent=""> </line>
+      <line linenr="011" indent=""> </line>
+   </sourcetext>
+   <codearray>
+      <sval type="array" size="10">
+         <sval type="string" val="al.plugin.memia.mcs" />
+         <sval type="int" val="50" />
+         <sval type="string" val="Memia Crate Spawner (AL Plugin Registration)" />
+         <sval type="int" val="1.00" />
+         <sval type="int" val="0" />
+         <sval type="int" val="0" />
+         <sval type="array" size="2">
+            <sval type="array" size="2">
+               <sval type="int" val="1000" />
+               <sval type="string" val="al.memia.mcs" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="103" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+         <sval type="array" size="9">
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Memia Crate Spawner" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="AL Plugin Registration" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Version 1.00  12/07/2013" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="2" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="2" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="2" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="2" />
+               <sval type="int" val="2" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+      </sval>
+   </codearray>
+</script>

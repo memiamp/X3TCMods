@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<language id="44"> 
+
+	<page id="2008">
+		<t id="7851">CMD_MEMIA_STO</t>
+	</page>
+
+	<page id="2010"> 
+		<t id="7851">Memia Sector Takeover</t>
+	</page> 
+
+	<page id="2011"> 
+		<t id="7851">MSTO</t>
+	</page> 
+
+	<page id="7851" title="MSTO" descr="Memia Sector Takeover">
+		<t id="1">\033YMemia Sector Takeover\033X</t>
+	</page>
+
+</language>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<language id="44"> 
+
+	<page id="2008">
+		<t id="7852">CMD_MEMIA_MSC_STPHQ</t>
+		<t id="7853">CMD_MEMIA_MSC_DTPHQ</t>
+    <t id="7854">CMD_MEMIA_MSC_CA</t>
+    <t id="7855">CMD_MEMIA_MSC_CC</t>
+    <t id="7856">CMD_MEMIA_MSC_CS</t>
+  </page>
+
+	<page id="2010"> 
+		<t id="7852">Send to Player HQ</t>
+    <t id="7853">Dock to Player HQ</t>
+    <t id="7854">Collect Astronauts</t>
+    <t id="7855">Collect Crates</t>
+    <t id="7856">Collect Ships</t>
+  </page> 
+
+	<page id="2011">
+		<t id="7852">STPHQ</t>
+    <t id="7853">DTPHQ</t>
+    <t id="7854">CA</t>
+    <t id="7855">CC</t>
+    <t id="7856">CS</t>
+  </page> 
+
+	<page id="7852" title="MSC" descr="Memia Ship Commands">
+		<t id="1">\033YSend to Player HQ\033X</t>
+    <t id="2">\033YDock to Player HQ\033X</t>
+    <t id="3">\033YCollect Astronauts\033X</t>
+    <t id="4">\033YCollect Crates\033X</t>
+    <t id="5">\033YCollect Ships\033X</t>
+  </page>
+
+</language>

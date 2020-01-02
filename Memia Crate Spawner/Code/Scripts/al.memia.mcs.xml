@@ -1,0 +1,596 @@
+<?xml version="1.0" standalone="yes"?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl"?>
+<!--Produced externally by the Exscriptor-->
+<script>
+   <name>al.memia.mcs</name>
+   <version>1.00</version>
+   <engineversion>50</engineversion>
+   <description>Memia Crate Spawner (AL Plugin)</description>
+   <arguments>
+      <argument index="0" name="plugin.ID" type="Var/String" desc="The ID of the plugin" />
+      <argument index="1" name="plugin.Event" type="Value" desc="The type of plugin event" />
+   </arguments>
+   <sourcetext>
+      <line linenr="001" indent=""><comment>* Memia Crate Spawner</comment></line>
+      <line linenr="002" indent=""><comment>* </comment></line>
+      <line linenr="003" indent=""><comment>* AL Plugin</comment></line>
+      <line linenr="004" indent=""><comment>* </comment></line>
+      <line linenr="005" indent=""><comment>* Version 1.00  12/07/2013</comment></line>
+      <line linenr="006" indent=""><text></text><var>$plugin.Vars =</var><text> get global variable: name=</text><var>$plugin.ID</var><text></text></line>
+      <line linenr="007" indent=""><var>$plugin.Version = </var><text></text><var>101 </var><text></text></line>
+      <line linenr="008" indent=""> </line>
+      <line linenr="009" indent=""><var>if </var><text></text><var>$plugin.Vars </var><text></text></line>
+      <line linenr="010" indent="&#160;"><text></text><var>$size =</var><text> size of array </text><var>$plugin.Vars</var><text></text></line>
+      <line linenr="011" indent="&#160;"><var>if </var><text></text><var>$size == 3 </var><text></text></line>
+      <line linenr="012" indent="&#160;&#160;"><text></text><var>$currentVersion =</var><text> </text><var>$plugin.Vars</var><text>[</text><var>2</var><text>]</text></line>
+      <line linenr="013" indent="&#160;&#160;"> </line>
+      <line linenr="014" indent="&#160;&#160;"><comment>* Check for upgrade (post version 101)</comment></line>
+      <line linenr="015" indent="&#160;&#160;"><var>if </var><text></text><var>$currentVersion != $plugin.Version </var><text></text></line>
+      <line linenr="016" indent="&#160;&#160;&#160;"><comment>* Do upgrade</comment></line>
+      <line linenr="017" indent="&#160;&#160;"><text>end</text></line>
+      <line linenr="018" indent="&#160;"><text>else</text></line>
+      <line linenr="019" indent="&#160;&#160;"><comment>* Force update version 100 to 101</comment></line>
+      <line linenr="020" indent="&#160;&#160;"><var>$plugin.Vars = </var><text></text><var>null </var><text></text></line>
+      <line linenr="021" indent="&#160;&#160;"><text>global secondary signal map: remove signal=</text><var>SIGNAL_KILLED</var><text> race=</text><var>null</var><text> class=</text><var>Ship 2004</var><text> name=</text><var>'MEMIA.MCS.SHIP'</var><text></text></line>
+      <line linenr="022" indent="&#160;"><text>end</text></line>
+      <line linenr="023" indent=""><text>end</text></line>
+      <line linenr="024" indent=""> </line>
+      <line linenr="025" indent=""><var>if not </var><text></text><var>$plugin.Vars </var><text></text></line>
+      <line linenr="026" indent="&#160;"><text></text><var>$plugin.Vars =</var><text> = array alloc: size=</text><var>3</var><text></text></line>
+      <line linenr="027" indent="&#160;"><text>set global variable: name=</text><var>$plugin.ID</var><text> value=</text><var>$plugin.Vars</var><text></text></line>
+      <line linenr="028" indent="&#160;"><text></text><var>$plugin.Vars</var><text>[</text><var>0</var><text>] = </text><var>0</var><text></text></line>
+      <line linenr="029" indent="&#160;"><text></text><var>$plugin.Vars</var><text>[</text><var>1</var><text>] = </text><var>[TRUE]</var><text></text></line>
+      <line linenr="030" indent="&#160;"><text></text><var>$plugin.Vars</var><text>[</text><var>2</var><text>] = </text><var>101</var><text></text></line>
+      <line linenr="031" indent="&#160;"><text>global secondary signal map: add signal=</text><var>SIGNAL_KILLED</var><text> race=</text><var>null</var><text> class=</text><var>Station 2016</var><text> script=</text><var></var><call>memia.mcs.signal.station.killed</call><var></var><text> prio=</text><var>100</var><text> name=</text><var>'MEMIA.MCS.STATION'</var><text></text></line>
+      <line linenr="032" indent="&#160;"><text>global secondary signal map: add signal=</text><var>SIGNAL_KILLED</var><text> race=</text><var>null</var><text> class=</text><var>Ship 2004</var><text> script=</text><var></var><call>memia.mcs.signal.ship.killed</call><var></var><text> prio=</text><var>100</var><text> name=</text><var>'MEMIA.MCS.SHIP'</var><text></text></line>
+      <line linenr="033" indent=""><text>end</text></line>
+      <line linenr="034" indent=""> </line>
+      <line linenr="035" indent=""><var>if </var><text></text><var>$plugin.Event == 'init' OR $plugin.Event == 'reinit' </var><text></text></line>
+      <line linenr="036" indent="&#160;"><text>al engine: set plugin </text><var>$plugin.ID</var><text> description to </text><var>'Memia Crate Spawner'</var><text></text></line>
+      <line linenr="037" indent="&#160;"> </line>
+      <line linenr="038" indent=""><var>else if </var><text></text><var>$plugin.Event == 'isenabled' </var><text></text></line>
+      <line linenr="039" indent="&#160;"><text></text><var>$enabled =</var><text> </text><var>$plugin.Vars</var><text>[</text><var>1</var><text>]</text></line>
+      <line linenr="040" indent="&#160;"><text>return </text><var>$enabled</var><text></text></line>
+      <line linenr="041" indent="&#160;"> </line>
+      <line linenr="042" indent=""><var>else if </var><text></text><var>$plugin.Event == 'start' </var><text></text></line>
+      <line linenr="043" indent="&#160;"><comment>* Add signal to ship killed</comment></line>
+      <line linenr="044" indent="&#160;"><text>global secondary signal map: add signal=</text><var>SIGNAL_KILLED</var><text> race=</text><var>null</var><text> class=</text><var>Station 2016</var><text> script=</text><var></var><call>memia.mcs.signal.station.killed</call><var></var><text> prio=</text><var>100</var><text> name=</text><var>'MEMIA.MCS.STATION'</var><text></text></line>
+      <line linenr="045" indent="&#160;"><text>global secondary signal map: add signal=</text><var>SIGNAL_KILLED</var><text> race=</text><var>null</var><text> class=</text><var>Ship 2004</var><text> script=</text><var></var><call>memia.mcs.signal.ship.killed</call><var></var><text> prio=</text><var>100</var><text> name=</text><var>'MEMIA.MCS.SHIP'</var><text></text></line>
+      <line linenr="046" indent="&#160;"><text></text><var>$plugin.Vars</var><text>[</text><var>1</var><text>] = </text><var>[TRUE]</var><text></text></line>
+      <line linenr="047" indent="&#160;"> </line>
+      <line linenr="048" indent=""><var>else if </var><text></text><var>$plugin.Event == 'stop' </var><text></text></line>
+      <line linenr="049" indent="&#160;"><comment>* Remove signal from ship killed</comment></line>
+      <line linenr="050" indent="&#160;"><text>global secondary signal map: remove signal=</text><var>SIGNAL_KILLED</var><text> race=</text><var>null</var><text> class=</text><var>Ship 2004</var><text> name=</text><var>'MEMIA.MCS.SHIP'</var><text></text></line>
+      <line linenr="051" indent="&#160;"><text>global secondary signal map: remove signal=</text><var>SIGNAL_KILLED</var><text> race=</text><var>null</var><text> class=</text><var>Station 2016</var><text> name=</text><var>'MEMIA.MCS.STATION'</var><text></text></line>
+      <line linenr="052" indent="&#160;"><text></text><var>$plugin.Vars</var><text>[</text><var>1</var><text>] = </text><var>[FALSE]</var><text></text></line>
+      <line linenr="053" indent="&#160;"> </line>
+      <line linenr="054" indent=""><var>else if </var><text></text><var>$plugin.Event == 'timer' </var><text></text></line>
+      <line linenr="055" indent="&#160;"><comment>* Do nothing on timer event</comment></line>
+      <line linenr="056" indent=""><text>end</text></line>
+      <line linenr="057" indent=""> </line>
+      <line linenr="058" indent=""><text>return </text><var>null</var><text></text></line>
+      <line linenr="059" indent=""> </line>
+      <line linenr="060" indent=""> </line>
+   </sourcetext>
+   <codearray>
+      <sval type="array" size="10">
+         <sval type="string" val="al.memia.mcs" />
+         <sval type="int" val="50" />
+         <sval type="string" val="Memia Crate Spawner (AL Plugin)" />
+         <sval type="int" val="1.00" />
+         <sval type="int" val="0" />
+         <sval type="array" size="7">
+            <sval type="string" val="plugin.ID" />
+            <sval type="string" val="plugin.Event" />
+            <sval type="string" val="plugin.Vars" />
+            <sval type="string" val="plugin.Version" />
+            <sval type="string" val="size" />
+            <sval type="string" val="currentVersion" />
+            <sval type="string" val="enabled" />
+         </sval>
+         <sval type="array" size="37">
+            <sval type="array" size="4">
+               <sval type="int" val="158" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="0" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="3" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="101" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610610173" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="131" />
+               <sval type="int" val="4" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610610685" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="4" />
+               <sval type="int" val="4" />
+               <sval type="int" val="3" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="6">
+               <sval type="int" val="129" />
+               <sval type="int" val="5" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610610941" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="5" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="3" />
+               <sval type="int" val="15" />
+               <sval type="int" val="1" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="10" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="2" />
+               <sval type="int" val="1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="9">
+               <sval type="int" val="1408" />
+               <sval type="int" val="18" />
+               <sval type="int" val="1001" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="12" />
+               <sval type="int" val="2004" />
+               <sval type="int" val="5" />
+               <sval type="string" val="MEMIA.MCS.SHIP" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="-536866300" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="128" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="3" />
+            </sval>
+            <sval type="array" size="5">
+               <sval type="int" val="157" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="0" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="130" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="130" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="10" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="130" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="101" />
+            </sval>
+            <sval type="array" size="12">
+               <sval type="int" val="1407" />
+               <sval type="int" val="18" />
+               <sval type="int" val="1001" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="12" />
+               <sval type="int" val="2016" />
+               <sval type="string" val="memia.mcs.signal.station.killed" />
+               <sval type="int" val="4" />
+               <sval type="int" val="100" />
+               <sval type="int" val="5" />
+               <sval type="string" val="MEMIA.MCS.STATION" />
+            </sval>
+            <sval type="array" size="12">
+               <sval type="int" val="1407" />
+               <sval type="int" val="18" />
+               <sval type="int" val="1001" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="12" />
+               <sval type="int" val="2004" />
+               <sval type="string" val="memia.mcs.signal.ship.killed" />
+               <sval type="int" val="4" />
+               <sval type="int" val="100" />
+               <sval type="int" val="5" />
+               <sval type="string" val="MEMIA.MCS.SHIP" />
+            </sval>
+            <sval type="array" size="25">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610607357" />
+               <sval type="int" val="7" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="5" />
+               <sval type="string" val="init" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="5" />
+               <sval type="string" val="reinit" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="15" />
+               <sval type="int" val="10" />
+               <sval type="int" val="7" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+               <sval type="int" val="10" />
+               <sval type="int" val="-4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-5" />
+            </sval>
+            <sval type="array" size="5">
+               <sval type="int" val="1024" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="0" />
+               <sval type="int" val="5" />
+               <sval type="string" val="Memia Crate Spawner" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="36" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610606331" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="5" />
+               <sval type="string" val="isenabled" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="6">
+               <sval type="int" val="129" />
+               <sval type="int" val="6" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="103" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="6" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="36" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610605051" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="5" />
+               <sval type="string" val="start" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="12">
+               <sval type="int" val="1407" />
+               <sval type="int" val="18" />
+               <sval type="int" val="1001" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="12" />
+               <sval type="int" val="2016" />
+               <sval type="string" val="memia.mcs.signal.station.killed" />
+               <sval type="int" val="4" />
+               <sval type="int" val="100" />
+               <sval type="int" val="5" />
+               <sval type="string" val="MEMIA.MCS.STATION" />
+            </sval>
+            <sval type="array" size="12">
+               <sval type="int" val="1407" />
+               <sval type="int" val="18" />
+               <sval type="int" val="1001" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="12" />
+               <sval type="int" val="2004" />
+               <sval type="string" val="memia.mcs.signal.ship.killed" />
+               <sval type="int" val="4" />
+               <sval type="int" val="100" />
+               <sval type="int" val="5" />
+               <sval type="string" val="MEMIA.MCS.SHIP" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="130" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="10" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="36" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610603771" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="5" />
+               <sval type="string" val="stop" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="9">
+               <sval type="int" val="1408" />
+               <sval type="int" val="18" />
+               <sval type="int" val="1001" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="12" />
+               <sval type="int" val="2004" />
+               <sval type="int" val="5" />
+               <sval type="string" val="MEMIA.MCS.SHIP" />
+            </sval>
+            <sval type="array" size="9">
+               <sval type="int" val="1408" />
+               <sval type="int" val="18" />
+               <sval type="int" val="1001" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="12" />
+               <sval type="int" val="2016" />
+               <sval type="int" val="5" />
+               <sval type="string" val="MEMIA.MCS.STATION" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="130" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="9" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="36" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610603515" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="5" />
+               <sval type="string" val="timer" />
+               <sval type="int" val="15" />
+               <sval type="int" val="0" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="103" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+            </sval>
+         </sval>
+         <sval type="array" size="2">
+            <sval type="array" size="2">
+               <sval type="int" val="11" />
+               <sval type="string" val="The ID of the plugin" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="string" val="The type of plugin event" />
+            </sval>
+         </sval>
+         <sval type="array" size="28">
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Memia Crate Spawner" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="AL Plugin" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Version 1.00  12/07/2013" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="2" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="6" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="6" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Check for upgrade (post version 101)" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="7" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Do upgrade" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="7" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="8" />
+               <sval type="int" val="5" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="8" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Force update version 100 to 101" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="10" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="10" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="10" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="18" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="18" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="20" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="24" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="26" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Add signal to ship killed" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="29" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="31" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Remove signal from ship killed" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="34" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="36" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Do nothing on timer event" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="36" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="36" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="37" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="37" />
+               <sval type="int" val="2" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+      </sval>
+   </codearray>
+</script>
