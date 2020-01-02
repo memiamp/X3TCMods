@@ -15,8 +15,8 @@ The capture distances are:
 - 250m without a transporter
 - 5000m with a transporter
 
-## [AutoCollect Create](/Memia%20AutoCollect%20Crate)
-Automatically collects all creates within the capture distance.
+## [AutoCollect Crate](/Memia%20AutoCollect%20Crate)
+Automatically collects all crates within the capture distance.
 
 The capture distances are:
 - 250m without a transporter
