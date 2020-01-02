@@ -1,0 +1,79 @@
+<?xml version="1.0" standalone="yes"?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl"?>
+<!--Produced externally by the Exscriptor-->
+<script>
+   <name>al.plugin.memia.asa</name>
+   <version>1.10</version>
+   <engineversion>50</engineversion>
+   <description>Memia AutoScan Asteroid (AL Plugin Registration)</description>
+   <arguments />
+   <sourcetext>
+      <line linenr="001" indent=""><comment>* Memia AutoScan Asteroid</comment></line>
+      <line linenr="002" indent=""><comment>* </comment></line>
+      <line linenr="003" indent=""><comment>* AL Plugin</comment></line>
+      <line linenr="004" indent=""><comment>* </comment></line>
+      <line linenr="005" indent=""><comment>* Version 1.10  25/06/2013</comment></line>
+      <line linenr="006" indent=""><text>al engine: register script=</text><var></var><call>al.memia.asa</call><var></var><text></text></line>
+      <line linenr="007" indent=""><text>return </text><var>null</var><text></text></line>
+      <line linenr="008" indent=""> </line>
+      <line linenr="009" indent=""> </line>
+   </sourcetext>
+   <codearray>
+      <sval type="array" size="10">
+         <sval type="string" val="al.plugin.memia.asa" />
+         <sval type="int" val="50" />
+         <sval type="string" val="Memia AutoScan Asteroid (AL Plugin Registration)" />
+         <sval type="int" val="1.10" />
+         <sval type="int" val="0" />
+         <sval type="int" val="0" />
+         <sval type="array" size="2">
+            <sval type="array" size="2">
+               <sval type="int" val="1000" />
+               <sval type="string" val="al.memia.asa" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="103" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+         <sval type="array" size="7">
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Memia AutoScan Asteroid" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="AL Plugin" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Version 1.10  25/06/2013" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="2" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="2" />
+               <sval type="int" val="2" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+      </sval>
+   </codearray>
+</script>

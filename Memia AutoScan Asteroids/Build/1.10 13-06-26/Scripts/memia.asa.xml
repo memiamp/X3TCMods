@@ -1,0 +1,223 @@
+<?xml version="1.0" standalone="yes"?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl"?>
+<!--Produced externally by the Exscriptor-->
+<script>
+   <name>memia.asa</name>
+   <version>1.10</version>
+   <engineversion>50</engineversion>
+   <description>Memia AutoScan Asteroid</description>
+   <arguments />
+   <sourcetext>
+      <line linenr="001" indent=""><comment>* Memia AutoScan Asteroid</comment></line>
+      <line linenr="002" indent=""><comment>* </comment></line>
+      <line linenr="003" indent=""><comment>* AutoScan Asteroid Script</comment></line>
+      <line linenr="004" indent=""><comment>* </comment></line>
+      <line linenr="005" indent=""><comment>* Version 1.10  25/06/2013</comment></line>
+      <line linenr="006" indent=""><text></text><var>if</var><text> </text><var>[PLAYERSHIP]</var><text>  ->  get volume of ware </text><var>Mineral Scanner</var><text> in cargo bay</text></line>
+      <line linenr="007" indent="&#160;"><text></text><var>$sector =</var><text> </text><var>[PLAYERSHIP]</var><text>  ->  get sector</text></line>
+      <line linenr="008" indent="&#160;"><text></text><var>$asteroids =</var><text> = </text><var>$sector</var><text>  ->  get asteroid array from sector</text></line>
+      <line linenr="009" indent="&#160;"> </line>
+      <line linenr="010" indent="&#160;"><text></text><var>$numAsteroids =</var><text> size of array </text><var>$asteroids</var><text></text></line>
+      <line linenr="011" indent="&#160;"><var>while </var><text></text><var>$numAsteroids &gt; -1 </var><text></text></line>
+      <line linenr="012" indent="&#160;&#160;"><text></text><var>$theRoid =</var><text> </text><var>$asteroids</var><text>[</text><var>$numAsteroids</var><text>]</text></line>
+      <line linenr="013" indent="&#160;&#160;"><text></text><var>if not</var><text> </text><var>$theRoid</var><text>  ->  is asteroid scanned</text></line>
+      <line linenr="014" indent="&#160;&#160;&#160;"><text></text><var>if</var><text> </text><var>[PLAYERSHIP]</var><text>  ->  is in mineral scanner range: asteroid=</text><var>$theRoid</var><text></text></line>
+      <line linenr="015" indent="&#160;&#160;&#160;&#160;"><text></text><var>$theRoid</var><text>  ->  set asteroid scanned to </text><var>[TRUE]</var><text></text></line>
+      <line linenr="016" indent="&#160;&#160;&#160;"><text>end</text></line>
+      <line linenr="017" indent="&#160;&#160;"><text>end</text></line>
+      <line linenr="018" indent="&#160;&#160;"> </line>
+      <line linenr="019" indent="&#160;&#160;"><var>$numAsteroids = </var><text></text><var>$numAsteroids - 1 </var><text></text></line>
+      <line linenr="020" indent="&#160;"><text>end</text></line>
+      <line linenr="021" indent=""><text>end</text></line>
+      <line linenr="022" indent=""> </line>
+      <line linenr="023" indent=""><text>return </text><var>null</var><text></text></line>
+      <line linenr="024" indent=""> </line>
+      <line linenr="025" indent=""> </line>
+      <line linenr="026" indent=""> </line>
+      <line linenr="027" indent=""> </line>
+   </sourcetext>
+   <codearray>
+      <sval type="array" size="10">
+         <sval type="string" val="memia.asa" />
+         <sval type="int" val="50" />
+         <sval type="string" val="Memia AutoScan Asteroid" />
+         <sval type="int" val="1.10" />
+         <sval type="int" val="0" />
+         <sval type="array" size="4">
+            <sval type="string" val="sector" />
+            <sval type="string" val="asteroids" />
+            <sval type="string" val="numAsteroids" />
+            <sval type="string" val="theRoid" />
+         </sval>
+         <sval type="array" size="12">
+            <sval type="array" size="6">
+               <sval type="int" val="613" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1610609917" />
+               <sval type="int" val="9" />
+               <sval type="int" val="1048588" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="703" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="3" />
+               <sval type="int" val="0" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="1014" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="131" />
+               <sval type="int" val="2" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="-1610609911" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="15" />
+               <sval type="int" val="2" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="2" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="6">
+               <sval type="int" val="129" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="4">
+               <sval type="int" val="1198" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-536868604" />
+            </sval>
+            <sval type="array" size="6">
+               <sval type="int" val="1347" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1610610429" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="3" />
+            </sval>
+            <sval type="array" size="5">
+               <sval type="int" val="1199" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131075" />
+               <sval type="int" val="10" />
+            </sval>
+            <sval type="array" size="13">
+               <sval type="int" val="104" />
+               <sval type="int" val="2" />
+               <sval type="int" val="3" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="15" />
+               <sval type="int" val="12" />
+               <sval type="int" val="3" />
+               <sval type="int" val="-1" />
+               <sval type="int" val="12" />
+               <sval type="int" val="-2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="112" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="103" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+         <sval type="array" size="16">
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Memia AutoScan Asteroid" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="AutoScan Asteroid Script" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Version 1.10  25/06/2013" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="3" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="9" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="11" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="11" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="11" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="12" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="12" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="12" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="12" />
+               <sval type="int" val="2" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+      </sval>
+   </codearray>
+</script>

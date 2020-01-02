@@ -1,0 +1,159 @@
+<?xml version="1.0" standalone="yes"?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl"?>
+<!--Produced externally by the Exscriptor-->
+<script>
+   <name>memia.aas</name>
+   <version>1.10</version>
+   <engineversion>50</engineversion>
+   <description>Memia Automatic Advanced Satellite</description>
+   <arguments>
+      <argument index="0" name="TargetSector" type="Var/Sector" desc="Target sector for advanced sat" />
+   </arguments>
+   <sourcetext>
+      <line linenr="001" indent=""><comment>* Memia Automatic Advanced Satellite</comment></line>
+      <line linenr="002" indent=""><comment>* </comment></line>
+      <line linenr="003" indent=""><comment>* Automatic Advanced Satellite Script</comment></line>
+      <line linenr="004" indent=""><comment>* </comment></line>
+      <line linenr="005" indent=""><comment>* Version 1.10  25/06/2013</comment></line>
+      <line linenr="006" indent=""><var>$sector = </var><text></text><var>$TargetSector </var><text></text></line>
+      <line linenr="007" indent=""> </line>
+      <line linenr="008" indent=""><text></text><var>$existing =</var><text> find ship: sector=</text><var>$sector</var><text> class or type=</text><var>Argon Advanced Satellite 4761</var><text> race=</text><var>Player</var><text> flags=</text><var>null</var><text> refobj=</text><var>null</var><text> maxdist=</text><var>null</var><text> maxnum=</text><var>1</var><text> refpos=</text><var>null</var><text></text></line>
+      <line linenr="009" indent=""><var>if not </var><text></text><var>$existing </var><text></text></line>
+      <line linenr="010" indent="&#160;"><text></text><var>$new =</var><text> = create ship: type=</text><var>Argon Advanced Satellite 4761</var><text> owner=</text><var>Player</var><text> addto=</text><var>$sector</var><text> x=</text><var>0</var><text> y=</text><var>15000</var><text> z=</text><var>0</var><text></text></line>
+      <line linenr="011" indent=""><text>end</text></line>
+      <line linenr="012" indent=""> </line>
+      <line linenr="013" indent=""><text>return </text><var>null</var><text></text></line>
+      <line linenr="014" indent=""> </line>
+      <line linenr="015" indent=""> </line>
+   </sourcetext>
+   <codearray>
+      <sval type="array" size="10">
+         <sval type="string" val="memia.aas" />
+         <sval type="int" val="50" />
+         <sval type="string" val="Memia Automatic Advanced Satellite" />
+         <sval type="int" val="1.10" />
+         <sval type="int" val="0" />
+         <sval type="array" size="4">
+            <sval type="string" val="TargetSector" />
+            <sval type="string" val="sector" />
+            <sval type="string" val="existing" />
+            <sval type="string" val="new" />
+         </sval>
+         <sval type="array" size="5">
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="1" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="18">
+               <sval type="int" val="757" />
+               <sval type="int" val="2" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="9" />
+               <sval type="int" val="459030" />
+               <sval type="int" val="10" />
+               <sval type="int" val="10" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+               <sval type="int" val="4" />
+               <sval type="int" val="1" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+            </sval>
+            <sval type="array" size="7">
+               <sval type="int" val="104" />
+               <sval type="int" val="-536869884" />
+               <sval type="int" val="1" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="2" />
+               <sval type="int" val="1" />
+               <sval type="int" val="-1" />
+            </sval>
+            <sval type="array" size="14">
+               <sval type="int" val="739" />
+               <sval type="int" val="3" />
+               <sval type="int" val="9" />
+               <sval type="int" val="459030" />
+               <sval type="int" val="10" />
+               <sval type="int" val="10" />
+               <sval type="int" val="131074" />
+               <sval type="int" val="1" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+               <sval type="int" val="4" />
+               <sval type="int" val="15000" />
+               <sval type="int" val="4" />
+               <sval type="int" val="0" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="103" />
+               <sval type="int" val="0" />
+               <sval type="int" val="0" />
+            </sval>
+         </sval>
+         <sval type="array" size="1">
+            <sval type="array" size="2">
+               <sval type="int" val="14" />
+               <sval type="string" val="Target sector for advanced sat" />
+            </sval>
+         </sval>
+         <sval type="array" size="10">
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Memia Automatic Advanced Satellite" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Automatic Advanced Satellite Script" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="" />
+            </sval>
+            <sval type="array" size="3">
+               <sval type="int" val="0" />
+               <sval type="int" val="1" />
+               <sval type="string" val="Version 1.10  25/06/2013" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="1" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="4" />
+               <sval type="int" val="4" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="4" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="5" />
+               <sval type="int" val="2" />
+            </sval>
+            <sval type="array" size="2">
+               <sval type="int" val="5" />
+               <sval type="int" val="2" />
+            </sval>
+         </sval>
+         <sval type="int" val="0" />
+      </sval>
+   </codearray>
+</script>
