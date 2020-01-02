@@ -1,0 +1,288 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>memia.wtd.transfer</name>
+<version>1</version>
+<engineversion>44</engineversion>
+<description>Memia Ware To Dock: Transfer Products</description>
+<arguments>
+<argument index="1" name="targetDock" type="Var/Station owned by Player" desc="Target dock for transfer" />
+<argument index="2" name="sourceFactory" type="Var/Station owned by Player" desc="Source factory for transfer" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><var>$SectorDock&#160;=&#160;</var><var>$targetDock&#160;-&gt;</var><text>&#160;get&#160;sector</text></line>
+<line linenr="002" indent=""><var>$SectorFactory&#160;=&#160;</var><var>$sourceFactory&#160;-&gt;</var><text>&#160;get&#160;sector</text></line>
+<line linenr="003" indent=""></line>
+<line linenr="004" indent=""><comment><text>*&#160;</text><var>Check&#160;that&#160;the&#160;source&#160;and&#160;target&#160;are&#160;in&#160;the&#160;same&#160;sector</var></comment></line>
+<line linenr="005" indent=""><var>if&#160;</var><var>$SectorDock</var><text>&#160;</text><var>==</var><text>&#160;</text><var>$SectorFactory</var></line>
+<line linenr="006" indent=""><comment><text>*&#160;</text><var>Add&#160;the&#160;ware&#160;to&#160;the&#160;dock</var></comment></line>
+<line linenr="007" indent="&#160;"><var>$Product&#160;=&#160;</var><var>$sourceFactory&#160;-&gt;</var><text>&#160;get&#160;product&#160;ware</text></line>
+<line linenr="008" indent="&#160;"><var>$targetDock&#160;-&gt;</var><text>&#160;add&#160;product&#160;to&#160;factory&#160;or&#160;dock:&#160;</text><var>$Product</var></line>
+<line linenr="009" indent="&#160;"></line>
+<line linenr="010" indent=""><comment><text>*&#160;</text><var>See&#160;if&#160;there&#160;is&#160;anything&#160;to&#160;transfer</var></comment></line>
+<line linenr="011" indent="&#160;"><var>$Amount&#160;=&#160;</var><var>$sourceFactory&#160;-&gt;</var><text>&#160;get&#160;amount&#160;of&#160;ware&#160;</text><var>$Product</var><text>&#160;in&#160;cargo&#160;bay</text></line>
+<line linenr="012" indent="&#160;"><var>if&#160;</var><var>$Amount</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>0</var></line>
+<line linenr="013" indent=""><comment><text>*&#160;</text><var>Check&#160;for&#160;maximum&#160;available&#160;space</var></comment></line>
+<line linenr="014" indent="&#160;&#160;"><var>$MaxAmount&#160;=&#160;</var><var>$targetDock&#160;-&gt;</var><text>&#160;get&#160;max&#160;amount&#160;of&#160;ware&#160;</text><var>$Product</var><text>&#160;that&#160;can&#160;be&#160;stored&#160;in&#160;cargo&#160;bay</text></line>
+<line linenr="015" indent="&#160;&#160;"><var>if&#160;</var><var>$Amount</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>$MaxAmount</var></line>
+<line linenr="016" indent="&#160;&#160;&#160;"><var>$Amount&#160;=&#160;</var><var>$MaxAmount</var></line>
+<line linenr="017" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="018" indent="&#160;&#160;"></line>
+<line linenr="019" indent=""><comment><text>*&#160;</text><var>Only&#160;continue&#160;if&#160;space&#160;is&#160;available</var></comment></line>
+<line linenr="020" indent="&#160;&#160;"><var>if&#160;</var><var>$Amount</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>0</var></line>
+<line linenr="021" indent=""><comment><text>*&#160;</text><var>Add&#160;product&#160;to&#160;dock&#160;and&#160;remove&#160;from&#160;source&#160;factory</var></comment></line>
+<line linenr="022" indent="&#160;&#160;&#160;"><var>=&#160;</var><var>$targetDock&#160;-&gt;</var><text>&#160;add&#160;</text><var>$Amount</var><text>&#160;units&#160;of&#160;</text><var>$Product</var></line>
+<line linenr="023" indent="&#160;&#160;&#160;"><var>$AmountNeg&#160;=&#160;</var><var>-</var><text>&#160;</text><var>$Amount</var></line>
+<line linenr="024" indent="&#160;&#160;&#160;"><var>=&#160;</var><var>$sourceFactory&#160;-&gt;</var><text>&#160;add&#160;</text><var>$AmountNeg</var><text>&#160;units&#160;of&#160;</text><var>$Product</var></line>
+<line linenr="025" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="026" indent="&#160;"><text>end</text></line>
+<line linenr="027" indent=""><text>end</text></line>
+<line linenr="028" indent=""></line>
+<line linenr="029" indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="memia.wtd.transfer"/>
+  <sval type="int" val="44"/>
+  <sval type="string" val="Memia Ware To Dock: Transfer Products"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="8">
+    <sval type="string" val="targetDock"/>
+    <sval type="string" val="sourceFactory"/>
+    <sval type="string" val="SectorDock"/>
+    <sval type="string" val="SectorFactory"/>
+    <sval type="string" val="Product"/>
+    <sval type="string" val="Amount"/>
+    <sval type="string" val="MaxAmount"/>
+    <sval type="string" val="AmountNeg"/>
+  </sval>
+  <sval type="array" size="15">
+    <sval type="array" size="4">
+      <sval type="int" val="703"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="703"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609149"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="638"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="750"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="618"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609149"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="621"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610610173"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609149"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="646"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="10">
+      <sval type="int" val="104"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="65555"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="65555"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="646"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-2147483647"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="array" size="2">
+    <sval type="array" size="2">
+      <sval type="int" val="36"/>
+      <sval type="string" val="Target dock for transfer"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="36"/>
+      <sval type="string" val="Source factory for transfer"/>
+    </sval>
+  </sval>
+  <sval type="array" size="14">
+    <sval type="array" size="2">
+      <sval type="int" val="2"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="2"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Check that the source and target are in the same sector"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Add the ware to the dock"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="5"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="5"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="See if there is anything to transfer"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="7"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Check for maximum available space"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="10"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Only continue if space is available"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="11"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Add product to dock and remove from source factory"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="int" val="2"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

@@ -1,0 +1,219 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>memia.wtd.getPlayerSectors</name>
+<version>1</version>
+<engineversion>44</engineversion>
+<description>Memia WareToDock: Get Player Sectors</description>
+<arguments>
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><comment><text>*&#160;</text><var>Declarations</var></comment></line>
+<line linenr="002" indent=""><var>$HasReturn&#160;=&#160;</var><var>[FALSE]</var></line>
+<line linenr="003" indent=""><var>$ReturnValue&#160;=&#160;</var><text>&#160;array&#160;alloc:&#160;size=</text><var>0</var></line>
+<line linenr="004" indent=""></line>
+<line linenr="005" indent=""><comment><text>*&#160;</text><var>Go&#160;through&#160;all&#160;player&#160;docks</var></comment></line>
+<line linenr="006" indent=""><var>$Docks&#160;=&#160;</var><text>&#160;get&#160;station&#160;array:&#160;of&#160;race&#160;</text><var>Player</var><text>&#160;class/type=</text><var>Dock</var></line>
+<line linenr="007" indent=""><var>$Count&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$Docks</var></line>
+<line linenr="008" indent=""><var>while&#160;</var><var>$Count</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>0</var></line>
+<line linenr="009" indent="&#160;"><text>dec&#160;</text><var>$Count&#160;=&#160;</var></line>
+<line linenr="010" indent="&#160;"></line>
+<line linenr="011" indent=""><comment><text>*&#160;</text><var>Get&#160;dock&#160;sector&#160;and&#160;add&#160;to&#160;return</var></comment></line>
+<line linenr="012" indent="&#160;"><var>$Dock&#160;=&#160;</var><var>$Docks</var><text>[</text><var>$Count</var><text>]</text></line>
+<line linenr="013" indent="&#160;"><var>$Sector&#160;=&#160;</var><var>$Dock&#160;-&gt;</var><text>&#160;get&#160;sector</text></line>
+<line linenr="014" indent="&#160;"><var>if&#160;not&#160;</var><text>&#160;find&#160;</text><var>$Sector</var><text>&#160;in&#160;array:&#160;</text><var>$ReturnValue</var></line>
+<line linenr="015" indent="&#160;&#160;"><var>$HasReturn&#160;=&#160;</var><var>[TRUE]</var></line>
+<line linenr="016" indent="&#160;&#160;"><text>append&#160;</text><var>$Sector</var><text>&#160;to&#160;array&#160;</text><var>$ReturnValue</var></line>
+<line linenr="017" indent="&#160;"><text>end</text></line>
+<line linenr="018" indent=""><text>end</text></line>
+<line linenr="019" indent=""></line>
+<line linenr="020" indent=""><comment><text>*&#160;</text><var>Return&#160;the&#160;sector&#160;array&#160;if&#160;any&#160;valid&#160;sectors&#160;were&#160;found</var></comment></line>
+<line linenr="021" indent=""><var>if&#160;</var><var>$HasReturn</var></line>
+<line linenr="022" indent="&#160;"><text>return&#160;</text><var>$ReturnValue</var></line>
+<line linenr="023" indent=""><text>end</text></line>
+<line linenr="024" indent=""></line>
+<line linenr="025" indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="memia.wtd.getPlayerSectors"/>
+  <sval type="int" val="44"/>
+  <sval type="string" val="Memia WareToDock: Get Player Sectors"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="6">
+    <sval type="string" val="HasReturn"/>
+    <sval type="string" val="ReturnValue"/>
+    <sval type="string" val="Docks"/>
+    <sval type="string" val="Count"/>
+    <sval type="string" val="Dock"/>
+    <sval type="string" val="Sector"/>
+  </sval>
+  <sval type="array" size="15">
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="128"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="1069"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="2007"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609655"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="143"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="703"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="1406"/>
+      <sval type="int" val="-536868092"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="135"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610609149"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+  <sval type="array" size="11">
+    <sval type="array" size="3">
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Declarations"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="2"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="2"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Go through all player docks"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="6"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="6"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Get dock sector and add to return"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="11"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="12"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="12"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="12"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Return the sector array if any valid sectors were found"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="int" val="2"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

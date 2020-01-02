@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<language id="44"> 
+
+	<page id="2008">
+		<t id="7852">CMD_MEMIA_DOCKAT</t>
+	</page>
+	
+	<page id="2010"> 
+		<t id="7852">Dock at nearest shipyard</t>
+	</page> 
+	
+	<page id="2011"> 
+		<t id="7852">MDA</t>
+	</page> 
+	 
+	<page id="7852" title="Memia Dock At">
+		<t id="1">\033YDebris Salvage Main Menu\033X</t>
+		<t id="2">Assess Repair Resources</t>
+		<t id="3">Repair Debris</t> 
+		<t id="4">Utilize Debris</t>
+	</page> 
+ 
+</language>

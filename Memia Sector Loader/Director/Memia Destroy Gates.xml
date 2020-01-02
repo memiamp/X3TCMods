@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="director.xsl" type="text/xsl" ?>
+<director name="template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="director.xsd">
+  <cues>
+    <cue name="Destroy_Memia_Gates">
+      <condition>
+        <check_all>
+          <check_value value="{player.name}" exact="Memia2"/>
+        </check_all>
+      </condition>
+      <timing>
+        <time exact="2s"/>
+      </timing>
+      <action>
+        <do_all>
+          <load_text fileid="7851"/>
+          <find_gate name="SPG South" gate="south" typename="SS_WG_SOUTH">
+            <sector x="11" y="6"/>
+          </find_gate>
+          <find_gate name="X347 North" gate="north" typename="SS_WG_NORTH">
+            <sector x="11" y="7"/>
+          </find_gate>
+          <find_gate name="X472 South" gate="south" typename="SS_WG_SOUTH">
+            <sector x="15" y="5"/>
+          </find_gate>
+          <find_gate name="BHS North" gate="north" typename="SS_WG_NORTH">
+            <sector x="15" y="6"/>
+          </find_gate>
+          <find_gate name="X598 South" gate="south" typename="SS_WG_SOUTH">
+            <sector x="19" y="6"/>
+          </find_gate>
+          <destroy_object object="SPG South" explosion="0"/>
+          <destroy_object object="X347 North" explosion="0"/>
+          <destroy_object object="X472 South" explosion="0"/>
+          <destroy_object object="BHS North" explosion="0"/>
+          <destroy_object object="X598 South" explosion="0"/> 
+        </do_all>
+      </action>
+    </cue>
+  </cues>
+</director>

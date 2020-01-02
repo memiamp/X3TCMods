@@ -1,0 +1,363 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>memia.lib.GetNearest</name>
+<version>1</version>
+<engineversion>44</engineversion>
+<description>Memia Lib: Get Nearest Station</description>
+<arguments>
+<argument index="1" name="sourceSector" type="Var/Sector" desc="Source object sector" />
+<argument index="2" name="objectClass" type="Var/Class" desc="Class of object to find" />
+<argument index="3" name="friendlyOnly" type="Var/Boolean" desc="Friendly objects only" />
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><comment><text>*&#160;</text><var>Declarations</var></comment></line>
+<line linenr="002" indent=""><var>$nearestObject&#160;=&#160;</var><var>null</var></line>
+<line linenr="003" indent=""><var>$nearestDist&#160;=&#160;</var><var>999</var></line>
+<line linenr="004" indent=""><var>$flags&#160;=&#160;</var><var>[Find.Nearest]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[Find.Multiple]</var></line>
+<line linenr="005" indent=""></line>
+<line linenr="006" indent=""><comment><text>*&#160;</text><var>Is&#160;the&#160;frienldy&#160;flag&#160;set?</var></comment></line>
+<line linenr="007" indent=""><var>if&#160;</var><var>$friendlyOnly</var></line>
+<line linenr="008" indent="&#160;"><var>$flags&#160;=&#160;</var><var>$flags</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[Find.Friend]</var><text>&#160;</text><var>|</var><text>&#160;</text><var>[Find.Neutral]</var></line>
+<line linenr="009" indent=""><text>end</text></line>
+<line linenr="010" indent=""></line>
+<line linenr="011" indent=""><comment><text>*&#160;</text><var>Get&#160;object&#160;list</var></comment></line>
+<line linenr="012" indent=""><var>$objects&#160;=&#160;</var><text>&#160;find&#160;station&#160;in&#160;galaxy:&#160;startsector=</text><var>$sourceSector</var><text>&#160;class&#160;or&#160;type=</text><var>$objectClass</var><text>&#160;race=</text><var>null</var><text>&#160;flags=</text><var>$flags</var><text>&#160;refobj=</text><var>null</var><text>&#160;serial=</text><var>null</var><text>&#160;max.jumps=</text><var>null</var><text>&#160;num=</text><var>250</var></line>
+<line linenr="013" indent=""></line>
+<line linenr="014" indent=""><comment><text>*&#160;</text><var>Go&#160;through&#160;objects</var></comment></line>
+<line linenr="015" indent=""><var>$count&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$objects</var></line>
+<line linenr="016" indent=""><var>while&#160;</var><var>$count</var></line>
+<line linenr="017" indent="&#160;"><var>$object&#160;=&#160;</var><var>$objects</var><text>[</text><var>$count</var><text>]</text></line>
+<line linenr="018" indent="&#160;"><text>dec&#160;</text><var>$count&#160;=&#160;</var></line>
+<line linenr="019" indent="&#160;"></line>
+<line linenr="020" indent=""><comment><text>*&#160;</text><var>Calculate&#160;how&#160;far&#160;the&#160;sector&#160;is</var></comment></line>
+<line linenr="021" indent="&#160;"><var>$objectSector&#160;=&#160;</var><var>$object&#160;-&gt;</var><text>&#160;get&#160;sector</text></line>
+<line linenr="022" indent="&#160;"><var>$objectDist&#160;=&#160;</var><text>get&#160;jumps&#160;from&#160;sector&#160;</text><var>$sourceSector</var><text>&#160;to&#160;sector&#160;</text><var>$objectSector</var></line>
+<line linenr="023" indent="&#160;"></line>
+<line linenr="024" indent=""><comment><text>*&#160;</text><var>Is&#160;the&#160;sector&#160;nearer&#160;then&#160;the&#160;nearest&#160;found&#160;so&#160;far?</var></comment></line>
+<line linenr="025" indent="&#160;"><var>if&#160;</var><var>$objectDist</var><text>&#160;</text><var>&lt;</var><text>&#160;</text><var>$nearestDist</var></line>
+<line linenr="026" indent="&#160;&#160;"><var>$nearestDist&#160;=&#160;</var><var>$objectDist</var></line>
+<line linenr="027" indent="&#160;&#160;"><var>$nearestObject&#160;=&#160;</var><var>$object</var></line>
+<line linenr="028" indent="&#160;&#160;"></line>
+<line linenr="029" indent=""><comment><text>*&#160;</text><var>Stop&#160;searching&#160;if&#160;this&#160;object&#160;is&#160;1&#160;sector&#160;away</var></comment></line>
+<line linenr="030" indent="&#160;&#160;"><var>if&#160;</var><var>$nearestDist</var><text>&#160;</text><var>==</var><text>&#160;</text><var>1</var></line>
+<line linenr="031" indent="&#160;&#160;&#160;"><var>$count&#160;=&#160;</var><var>[FALSE]</var></line>
+<line linenr="032" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="033" indent="&#160;"><text>end</text></line>
+<line linenr="034" indent=""><text>end</text></line>
+<line linenr="035" indent=""></line>
+<line linenr="036" indent=""><text>return&#160;</text><var>$nearestObject</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="memia.lib.GetNearest"/>
+  <sval type="int" val="44"/>
+  <sval type="string" val="Memia Lib: Get Nearest Station"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="11">
+    <sval type="string" val="sourceSector"/>
+    <sval type="string" val="objectClass"/>
+    <sval type="string" val="friendlyOnly"/>
+    <sval type="string" val="nearestObject"/>
+    <sval type="string" val="nearestDist"/>
+    <sval type="string" val="flags"/>
+    <sval type="string" val="objects"/>
+    <sval type="string" val="count"/>
+    <sval type="string" val="object"/>
+    <sval type="string" val="objectSector"/>
+    <sval type="string" val="objectDist"/>
+  </sval>
+  <sval type="array" size="19">
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="999"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="106"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="111"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610611453"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="19">
+      <sval type="int" val="104"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="110"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="109"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="-2"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="-4"/>
+    </sval>
+    <sval type="array" size="18">
+      <sval type="int" val="1035"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="250"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608119"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="143"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="703"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="711"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608381"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610608381"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+    </sval>
+  </sval>
+  <sval type="array" size="3">
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="string" val="Source object sector"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="23"/>
+      <sval type="string" val="Class of object to find"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="63"/>
+      <sval type="string" val="Friendly objects only"/>
+    </sval>
+  </sval>
+  <sval type="array" size="18">
+    <sval type="array" size="3">
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Declarations"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="3"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="3"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Is the frienldy flag set?"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="5"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="5"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="5"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Get object list"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="6"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="6"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Go through objects"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="10"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="10"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Calculate how far the sector is"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="12"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="12"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Is the sector nearer then the nearest found so far?"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="15"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Stop searching if this object is 1 sector away"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="17"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="17"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="18"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="18"/>
+      <sval type="int" val="2"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

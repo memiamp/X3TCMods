@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="director.xsl" type="text/xsl" ?>
+<director name="template" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="director.xsd">
+  <cues>
+    <cue name="Load_Memia_Sectors">
+      <condition>
+        <check_all>
+          <check_value value="{player.name}" exact="Memia"/>
+        </check_all>
+      </condition>
+      <timing>
+        <time exact="2s"/>
+      </timing>
+      <action>
+        <do_all>
+          <load_text fileid="7851"/>
+          <load_map file="memia_sectors"/>
+          <find_sector name="Load_Memia_Sectors.memia1" x="9" y="5"/>
+          <find_sector name="Load_Memia_Sectors.memia2" x="9" y="6"/>
+          <find_sector name="Load_Memia_Sectors.memia3" x="9" y="7"/>
+          <find_sector name="Load_Memia_Sectors.memia4" x="10" y="6"/>
+          <find_sector name="Load_Memia_Sectors.memia5" x="16" y="6"/>
+          <find_sector name="Load_Memia_Sectors.memia6" x="18" y="6"/>
+          <find_gate name="SPG South" gate="south" typename="SS_WG_SOUTH">
+            <sector x="11" y="6"/>
+          </find_gate>
+          <find_gate name="X347 North" gate="north" typename="SS_WG_NORTH">
+            <sector x="11" y="7"/>
+          </find_gate>
+          <find_gate name="X472 South" gate="south" typename="SS_WG_SOUTH">
+            <sector x="15" y="5"/>
+          </find_gate>
+          <find_gate name="BHS North" gate="north" typename="SS_WG_NORTH">
+            <sector x="15" y="6"/>
+          </find_gate>
+          <find_gate name="X598 South" gate="south" typename="SS_WG_SOUTH">
+            <sector x="19" y="6"/>
+          </find_gate>
+          <destroy_object object="SPG South" explosion="0"/>
+          <destroy_object object="X347 North" explosion="0"/>
+          <destroy_object object="X472 South" explosion="0"/>
+          <destroy_object object="BHS North" explosion="0"/>
+          <destroy_object object="X598 South" explosion="0"/> 
+        </do_all>
+      </action>
+      <cues>
+        <cue name="Name_Memia_Sectors">
+          <condition>
+            <cue_is_complete cue="Load_Memia_Sectors"/>
+          </condition>
+          <timing>
+            <time exact="10s"/>
+          </timing>
+          <action>
+            <do_all>
+              <set_sector_override sector="Load_Memia_Sectors.memia1" textid="1030001"/>
+              <set_sector_override sector="Load_Memia_Sectors.memia2" textid="1030002"/>
+              <set_sector_override sector="Load_Memia_Sectors.memia3" textid="1030003"/>
+              <set_sector_override sector="Load_Memia_Sectors.memia4" textid="1030004"/>
+              <set_sector_override sector="Load_Memia_Sectors.memia5" textid="1030005"/>
+              <set_sector_override sector="Load_Memia_Sectors.memia6" textid="1030006"/>
+            </do_all>
+          </action>
+        </cue>
+      </cues>
+    </cue>
+  </cues>
+</director>

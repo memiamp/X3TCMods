@@ -1,0 +1,1010 @@
+<?xml version="1.0" standalone="yes" ?>
+<?xml-stylesheet href="x2script.xsl" type="text/xsl" ?>
+<script>
+<name>memia.wtd.menu</name>
+<version>1</version>
+<engineversion>44</engineversion>
+<description>Memia WareToDock:  Main  Menu</description>
+<arguments>
+</arguments>
+<sourcetext>
+<line linenr="001" indent=""><comment><text>*&#160;</text><var>Declarations</var></comment></line>
+<line linenr="002" indent=""><var>$PageID&#160;=&#160;</var><var>7853</var></line>
+<line linenr="003" indent=""><var>$IsWtdEnabledVar&#160;=&#160;</var><var>'Memia.WTD.Enabled'</var></line>
+<line linenr="004" indent=""></line>
+<line linenr="005" indent=""><comment><text>*&#160;</text><var>Menu&#160;loop</var></comment></line>
+<line linenr="006" indent=""><var>while&#160;</var><var>[TRUE]</var></line>
+<line linenr="007" indent="&#160;"><var>$MenuTitle&#160;=&#160;</var><text>&#160;read&#160;text:&#160;page=</text><var>$PageID</var><text>&#160;id=</text><var>100</var></line>
+<line linenr="008" indent="&#160;"><var>$MenuDesc&#160;=&#160;</var><text>&#160;read&#160;text:&#160;page=</text><var>$PageID</var><text>&#160;id=</text><var>102</var></line>
+<line linenr="009" indent="&#160;"><var>$MainMenu&#160;=&#160;</var><text>&#160;create&#160;custom&#160;menu&#160;array:&#160;heading=</text><var>$MenuTitle</var></line>
+<line linenr="010" indent="&#160;"></line>
+<line linenr="011" indent=""><comment><text>*&#160;</text><var>Get&#160;player&#160;sector&#160;list</var></comment></line>
+<line linenr="012" interruptable="@" indent="&#160;"><var>$Sectors&#160;=&#160;</var><var>[THIS]&#160;-&gt;</var><text>&#160;call&#160;script&#160;</text><call>memia.wtd.getPlayerSectors</call><text>&#160;:&#160;</text></line>
+<line linenr="013" indent="&#160;"><var>$Sectors&#160;=&#160;</var><text>&#160;sort&#160;array&#160;</text><var>$Sectors</var></line>
+<line linenr="014" indent="&#160;"><var>$Sectors&#160;=&#160;</var><text>&#160;reverse&#160;array&#160;</text><var>$Sectors</var></line>
+<line linenr="015" indent="&#160;"></line>
+<line linenr="016" indent=""><comment><text>*&#160;</text><var>Go&#160;through&#160;each&#160;player&#160;sector</var></comment></line>
+<line linenr="017" indent="&#160;"><var>$Count&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$Sectors</var></line>
+<line linenr="018" indent="&#160;"><var>while&#160;</var><var>$Count</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>0</var></line>
+<line linenr="019" indent="&#160;&#160;"><text>dec&#160;</text><var>$Count&#160;=&#160;</var></line>
+<line linenr="020" indent="&#160;&#160;"><var>$Sector&#160;=&#160;</var><var>$Sectors</var><text>[</text><var>$Count</var><text>]</text></line>
+<line linenr="021" indent="&#160;&#160;"></line>
+<line linenr="022" indent="&#160;&#160;"><var>$SectorStations&#160;=&#160;</var><text>&#160;array&#160;alloc:&#160;size=</text><var>0</var></line>
+<line linenr="023" indent="&#160;&#160;"></line>
+<line linenr="024" indent=""><comment><text>*&#160;</text><var>Process&#160;docks</var></comment></line>
+<line linenr="025" indent="&#160;&#160;"><text>add&#160;custom&#160;menu&#160;heading&#160;to&#160;array&#160;</text><var>$MainMenu</var><text>:&#160;title=</text><var>$Sector</var></line>
+<line linenr="026" indent="&#160;&#160;"><var>$Stations&#160;=&#160;</var><var>$Sector&#160;-&gt;</var><text>&#160;get&#160;player&#160;owned&#160;station&#160;array&#160;from&#160;sector</text></line>
+<line linenr="027" indent="&#160;&#160;"><var>$CountA&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$Stations</var></line>
+<line linenr="028" indent="&#160;&#160;"><var>while&#160;</var><var>$CountA</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>0</var></line>
+<line linenr="029" indent="&#160;&#160;&#160;"><text>dec&#160;</text><var>$CountA&#160;=&#160;</var></line>
+<line linenr="030" indent="&#160;&#160;&#160;"><var>$Station&#160;=&#160;</var><var>$Stations</var><text>[</text><var>$CountA</var><text>]</text></line>
+<line linenr="031" indent="&#160;&#160;&#160;"></line>
+<line linenr="032" indent="&#160;&#160;&#160;"><var>if&#160;</var><var>$Station&#160;-&gt;</var><text>&#160;is&#160;of&#160;class&#160;</text><var>Dock</var></line>
+<line linenr="033" indent=""><comment><text>*&#160;</text><var>Add&#160;docks</var></comment></line>
+<line linenr="034" indent="&#160;&#160;&#160;&#160;"><var>$Name&#160;=&#160;</var><var>$Station&#160;-&gt;</var><text>&#160;get&#160;name</text></line>
+<line linenr="035" indent="&#160;&#160;&#160;&#160;"><var>if&#160;</var><var>$Station&#160;-&gt;</var><text>&#160;get&#160;local&#160;variable:&#160;name=</text><var>$IsWtdEnabledVar</var></line>
+<line linenr="036" indent="&#160;&#160;&#160;&#160;&#160;"><var>$Title&#160;=&#160;</var><text>sprintf:&#160;pageid=</text><var>$PageID</var><text>&#160;textid=</text><var>9000</var><text>,&#160;</text><var>$Name</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
+<line linenr="037" indent="&#160;&#160;&#160;&#160;"><text>else</text></line>
+<line linenr="038" indent="&#160;&#160;&#160;&#160;&#160;"><var>$Title&#160;=&#160;</var><var>$Name</var></line>
+<line linenr="039" indent="&#160;&#160;&#160;&#160;"><text>end</text></line>
+<line linenr="040" indent="&#160;&#160;&#160;&#160;"><text>add&#160;custom&#160;menu&#160;item&#160;to&#160;array&#160;</text><var>$MainMenu</var><text>:&#160;text=</text><var>$Title</var><text>&#160;returnvalue=</text><var>$Station</var></line>
+<line linenr="041" indent="&#160;&#160;&#160;"><var>else&#160;if&#160;</var><var>$Station&#160;-&gt;</var><text>&#160;is&#160;of&#160;class&#160;</text><var>Station</var></line>
+<line linenr="042" indent=""><comment><text>*&#160;</text><var>Add&#160;station&#160;to&#160;array&#160;for&#160;processing&#160;later</var></comment></line>
+<line linenr="043" indent="&#160;&#160;&#160;&#160;"><text>append&#160;</text><var>$Station</var><text>&#160;to&#160;array&#160;</text><var>$SectorStations</var></line>
+<line linenr="044" indent="&#160;&#160;&#160;"><text>end</text></line>
+<line linenr="045" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="046" indent="&#160;&#160;"></line>
+<line linenr="047" indent=""><comment><text>*&#160;</text><var>Process&#160;stations</var></comment></line>
+<line linenr="048" indent="&#160;&#160;"><text>add&#160;section&#160;to&#160;custom&#160;menu:&#160;</text><var>$MainMenu</var></line>
+<line linenr="049" indent="&#160;&#160;"><var>$SectorStations&#160;=&#160;</var><text>&#160;sort&#160;array&#160;</text><var>$SectorStations</var></line>
+<line linenr="050" indent="&#160;&#160;"><var>$SectorStations&#160;=&#160;</var><text>&#160;reverse&#160;array&#160;</text><var>$SectorStations</var></line>
+<line linenr="051" indent="&#160;&#160;"><var>$CountA&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$SectorStations</var></line>
+<line linenr="052" indent="&#160;&#160;"><var>while&#160;</var><var>$CountA</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>0</var></line>
+<line linenr="053" indent="&#160;&#160;&#160;"><text>dec&#160;</text><var>$CountA&#160;=&#160;</var></line>
+<line linenr="054" indent="&#160;&#160;&#160;"><var>$Station&#160;=&#160;</var><var>$SectorStations</var><text>[</text><var>$CountA</var><text>]</text></line>
+<line linenr="055" indent="&#160;&#160;&#160;"></line>
+<line linenr="056" indent=""><comment><text>*&#160;</text><var>Change&#160;display&#160;depending&#160;on&#160;whether&#160;WTD&#160;is&#160;enabled</var></comment></line>
+<line linenr="057" indent="&#160;&#160;&#160;"><var>$Name&#160;=&#160;</var><var>$Station&#160;-&gt;</var><text>&#160;get&#160;name</text></line>
+<line linenr="058" indent="&#160;&#160;&#160;"><var>if&#160;</var><var>$Station&#160;-&gt;</var><text>&#160;get&#160;local&#160;variable:&#160;name=</text><var>$IsWtdEnabledVar</var></line>
+<line linenr="059" indent="&#160;&#160;&#160;&#160;"><var>$Title&#160;=&#160;</var><text>sprintf:&#160;pageid=</text><var>$PageID</var><text>&#160;textid=</text><var>9000</var><text>,&#160;</text><var>$Name</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var><text>,&#160;</text><var>null</var></line>
+<line linenr="060" indent="&#160;&#160;&#160;"><text>else</text></line>
+<line linenr="061" indent="&#160;&#160;&#160;&#160;"><var>$Title&#160;=&#160;</var><var>$Name</var></line>
+<line linenr="062" indent="&#160;&#160;&#160;"><text>end</text></line>
+<line linenr="063" indent="&#160;&#160;&#160;"><text>add&#160;custom&#160;menu&#160;item&#160;to&#160;array&#160;</text><var>$MainMenu</var><text>:&#160;text=</text><var>$Title</var><text>&#160;returnvalue=</text><var>$Station</var></line>
+<line linenr="064" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="065" indent="&#160;"><text>end</text></line>
+<line linenr="066" indent="&#160;"></line>
+<line linenr="067" indent=""><comment><text>*&#160;</text><var>Open&#160;the&#160;menu&#160;and&#160;process&#160;result</var></comment></line>
+<line linenr="068" indent="&#160;"><var>$Choice&#160;=&#160;</var><text>&#160;open&#160;custom&#160;menu:&#160;title=</text><var>$MenuTitle</var><text>&#160;description=</text><var>$MenuDesc</var><text>&#160;option&#160;array=</text><var>$MainMenu</var></line>
+<line linenr="069" indent="&#160;"><var>if&#160;</var><var>$Choice</var><text>&#160;</text><var>==</var><text>&#160;</text><var>-1</var></line>
+<line linenr="070" indent="&#160;&#160;"><text>goto&#160;label&#160;</text><var>Exit</var></line>
+<line linenr="071" indent="&#160;"><text>else</text></line>
+<line linenr="072" indent=""><comment><text>*&#160;</text><var>Is&#160;WTD&#160;already&#160;running&#160;on&#160;the&#160;object?</var></comment></line>
+<line linenr="073" indent="&#160;&#160;"><var>$Status&#160;=&#160;</var><var>$Choice&#160;-&gt;</var><text>&#160;get&#160;local&#160;variable:&#160;name=</text><var>$IsWtdEnabledVar</var></line>
+<line linenr="074" indent="&#160;&#160;"><var>if&#160;</var><var>$Status</var></line>
+<line linenr="075" indent=""><comment><text>*&#160;</text><var>Disable&#160;the&#160;WTD</var></comment></line>
+<line linenr="076" indent="&#160;&#160;&#160;"><var>$Choice&#160;-&gt;</var><text>&#160;set&#160;local&#160;variable:&#160;name=</text><var>$IsWtdEnabledVar</var><text>&#160;value=</text><var>null</var></line>
+<line linenr="077" indent="&#160;&#160;"><text>else</text></line>
+<line linenr="078" indent=""><comment><text>*&#160;</text><var>WTD&#160;not&#160;running&#160;so&#160;is&#160;the&#160;choice&#160;a&#160;dock&#160;or&#160;station?</var></comment></line>
+<line linenr="079" indent="&#160;&#160;&#160;"><var>if&#160;</var><var>$Choice&#160;-&gt;</var><text>&#160;is&#160;of&#160;class&#160;</text><var>Dock</var></line>
+<line linenr="080" indent=""><comment><text>*&#160;</text><var>Disable&#160;existing&#160;docks&#160;and&#160;set&#160;this&#160;dock</var></comment></line>
+<line linenr="081" indent="&#160;&#160;&#160;&#160;"><text>gosub&#160;</text><var>DisableDocks</var></line>
+<line linenr="082" indent="&#160;&#160;&#160;&#160;"><var>$Choice&#160;-&gt;</var><text>&#160;set&#160;local&#160;variable:&#160;name=</text><var>$IsWtdEnabledVar</var><text>&#160;value=</text><var>[TRUE]</var></line>
+<line linenr="083" indent="&#160;&#160;&#160;"><var>else&#160;if&#160;</var><var>$Choice&#160;-&gt;</var><text>&#160;is&#160;of&#160;class&#160;</text><var>Station</var></line>
+<line linenr="084" indent="&#160;&#160;&#160;&#160;"><var>$Choice&#160;-&gt;</var><text>&#160;set&#160;local&#160;variable:&#160;name=</text><var>$IsWtdEnabledVar</var><text>&#160;value=</text><var>[TRUE]</var></line>
+<line linenr="085" indent="&#160;&#160;&#160;&#160;"><text>gosub&#160;</text><var>StartStationTask</var></line>
+<line linenr="086" indent="&#160;&#160;&#160;"><text>end</text></line>
+<line linenr="087" indent="&#160;&#160;"><text>end</text></line>
+<line linenr="088" indent="&#160;"><text>end</text></line>
+<line linenr="089" indent=""><text>end</text></line>
+<line linenr="090" indent=""><text>return&#160;</text><var>null</var></line>
+<line linenr="091" indent=""></line>
+<line linenr="092" indent=""></line>
+<line linenr="093" indent=""><comment><text>*&#160;</text><var>Disable&#160;docks&#160;in&#160;this&#160;dock&#160;sector</var></comment></line>
+<line linenr="094" indent=""><var>DisableDocks</var><text>:</text></line>
+<line linenr="095" indent=""><var>$DockSector&#160;=&#160;</var><var>$Choice&#160;-&gt;</var><text>&#160;get&#160;sector</text></line>
+<line linenr="096" indent=""><var>$Stations&#160;=&#160;</var><var>$DockSector&#160;-&gt;</var><text>&#160;get&#160;player&#160;owned&#160;station&#160;array&#160;from&#160;sector</text></line>
+<line linenr="097" indent=""><var>$Count&#160;=&#160;</var><text>&#160;size&#160;of&#160;array&#160;</text><var>$Stations</var></line>
+<line linenr="098" indent=""><var>while&#160;</var><var>$Count</var><text>&#160;</text><var>&gt;</var><text>&#160;</text><var>0</var></line>
+<line linenr="099" indent="&#160;"><text>dec&#160;</text><var>$Count&#160;=&#160;</var></line>
+<line linenr="100" indent="&#160;"><var>$Station&#160;=&#160;</var><var>$Stations</var><text>[</text><var>$Count</var><text>]</text></line>
+<line linenr="101" indent="&#160;"></line>
+<line linenr="102" indent="&#160;"><var>if&#160;</var><var>$Station&#160;-&gt;</var><text>&#160;is&#160;of&#160;class&#160;</text><var>Dock</var></line>
+<line linenr="103" indent="&#160;&#160;"><var>$Station&#160;-&gt;</var><text>&#160;set&#160;local&#160;variable:&#160;name=</text><var>$IsWtdEnabledVar</var><text>&#160;value=</text><var>null</var></line>
+<line linenr="104" indent="&#160;"><text>end</text></line>
+<line linenr="105" indent=""><text>end</text></line>
+<line linenr="106" indent=""><text>endsub</text></line>
+<line linenr="107" indent=""></line>
+<line linenr="108" indent=""></line>
+<line linenr="109" indent=""><comment><text>*&#160;</text><var>Start&#160;the&#160;WTD&#160;task&#160;on&#160;the&#160;station</var></comment></line>
+<line linenr="110" indent=""><var>StartStationTask</var><text>:</text></line>
+<line linenr="111" indent=""><var>$Check&#160;=&#160;</var><var>$Choice&#160;-&gt;</var><text>&#160;is&#160;script&#160;</text><call>memia.wtd.stationTask</call><text>&#160;on&#160;stack&#160;of&#160;task=</text><var>$PageID</var></line>
+<line linenr="112" indent=""><var>if&#160;</var><var>$Check</var><text>&#160;</text><var>==</var><text>&#160;</text><var>[FALSE]</var></line>
+<line linenr="113" indent="&#160;"><var>$Choice&#160;-&gt;</var><text>&#160;set&#160;local&#160;variable:&#160;name=</text><var>$IsWtdEnabledVar</var><text>&#160;value=</text><var>[TRUE]</var></line>
+<line linenr="114" indent="&#160;"><var>$Choice&#160;-&gt;</var><text>&#160;start&#160;task&#160;</text><var>$PageID</var><text>&#160;with&#160;script&#160;</text><call>memia.wtd.stationTask</call><text>&#160;and&#160;prio&#160;</text><var>100</var><text>:&#160;arg1=</text><var>$Choice</var><text>&#160;arg2=</text><var>null</var><text>&#160;arg3=</text><var>null</var><text>&#160;arg4=</text><var>null</var><text>&#160;arg5=</text><var>null</var></line>
+<line linenr="115" indent=""><comment>*<text>else</text></comment></line>
+<line linenr="116" indent=""><comment>*$Choice&#160;-&gt;<text>&#160;set&#160;local&#160;variable:&#160;name=</text>$IsWtdEnabledVar<text>&#160;value=</text>null</comment></line>
+<line linenr="117" indent=""><text>end</text></line>
+<line linenr="118" indent=""><text>endsub</text></line>
+<line linenr="119" indent=""></line>
+<line linenr="120" indent=""></line>
+<line linenr="121" indent=""><var>Exit</var><text>:</text></line>
+<line linenr="122" indent=""><text>return&#160;</text><var>null</var></line>
+</sourcetext>
+<codearray>
+
+<sval type="array" size="10">
+  <sval type="string" val="memia.wtd.menu"/>
+  <sval type="int" val="44"/>
+  <sval type="string" val="Memia WareToDock:  Main  Menu"/>
+  <sval type="int" val="1"/>
+  <sval type="int" val="0"/>
+  <sval type="array" size="18">
+    <sval type="string" val="PageID"/>
+    <sval type="string" val="IsWtdEnabledVar"/>
+    <sval type="string" val="MenuTitle"/>
+    <sval type="string" val="MenuDesc"/>
+    <sval type="string" val="MainMenu"/>
+    <sval type="string" val="Sectors"/>
+    <sval type="string" val="Count"/>
+    <sval type="string" val="Sector"/>
+    <sval type="string" val="SectorStations"/>
+    <sval type="string" val="Stations"/>
+    <sval type="string" val="CountA"/>
+    <sval type="string" val="Station"/>
+    <sval type="string" val="Name"/>
+    <sval type="string" val="Title"/>
+    <sval type="string" val="Choice"/>
+    <sval type="string" val="Status"/>
+    <sval type="string" val="DockSector"/>
+    <sval type="string" val="Check"/>
+  </sval>
+  <sval type="array" size="82">
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="7853"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="5"/>
+      <sval type="string" val="Memia.WTD.Enabled"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610596855"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="100"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="126"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="102"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1416"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="102"/>
+      <sval type="string" val="memia.wtd.getPlayerSectors"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1375"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1443"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610600951"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="143"/>
+      <sval type="int" val="6"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="5"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="128"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="1448"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1013"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="7"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610604791"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="143"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="705"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-1610605565"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="2007"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1028"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="12"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="156"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1610606333"/>
+    </sval>
+    <sval type="array" size="16">
+      <sval type="int" val="150"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="9000"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="26"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="1447"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="30"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="705"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-1610605051"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="2016"/>
+    </sval>
+    <sval type="array" size="5">
+      <sval type="int" val="135"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="17"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="1522"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1375"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1443"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610601207"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="143"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="8"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1028"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="12"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="156"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1610601981"/>
+    </sval>
+    <sval type="array" size="16">
+      <sval type="int" val="150"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="9000"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="43"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="1447"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="13"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="35"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="8">
+      <sval type="int" val="1230"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610599933"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="100"/>
+      <sval type="int" val="80"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="61"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="156"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="15"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610598909"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="-1"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="155"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="61"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="705"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="-1610597885"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="2007"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="1167"/>
+      <sval type="int" val="63"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="155"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="61"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="705"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="-1610597115"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="2016"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="155"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="1167"/>
+      <sval type="int" val="74"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="101"/>
+      <sval type="string" val="DisableDocks"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="703"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="16"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="1013"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="16"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="4">
+      <sval type="int" val="131"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610594039"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="2"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="143"/>
+      <sval type="int" val="6"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="129"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="6"/>
+    </sval>
+    <sval type="array" size="6">
+      <sval type="int" val="705"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="-1610594301"/>
+      <sval type="int" val="12"/>
+      <sval type="int" val="2007"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="155"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="11"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="112"/>
+      <sval type="int" val="67"/>
+    </sval>
+    <sval type="array" size="1">
+      <sval type="int" val="1168"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="101"/>
+      <sval type="string" val="StartStationTask"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="1072"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="17"/>
+      <sval type="string" val="memia.wtd.stationTask"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="13">
+      <sval type="int" val="104"/>
+      <sval type="int" val="-1610592509"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="17"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="9"/>
+      <sval type="int" val="15"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="-1"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="-2"/>
+    </sval>
+    <sval type="array" size="7">
+      <sval type="int" val="155"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="1"/>
+      <sval type="int" val="131075"/>
+      <sval type="int" val="10"/>
+    </sval>
+    <sval type="array" size="18">
+      <sval type="int" val="1017"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="string" val="memia.wtd.stationTask"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="4"/>
+      <sval type="int" val="100"/>
+      <sval type="int" val="131074"/>
+      <sval type="int" val="14"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="1">
+      <sval type="int" val="1168"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="101"/>
+      <sval type="string" val="Exit"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="103"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+  <sval type="array" size="51">
+    <sval type="array" size="3">
+      <sval type="int" val="0"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Declarations"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="2"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="2"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Menu loop"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="6"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="6"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Get player sector list"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="9"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="9"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Go through each player sector"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="13"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="14"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="14"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Process docks"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="20"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="21"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Add docks"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="25"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="26"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="29"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Add station to array for processing later"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="30"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="31"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="31"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="31"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Process stations"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="38"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="38"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Change display depending on whether WTD is enabled"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="42"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="43"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="45"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="46"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="46"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="46"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Open the menu and process result"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="50"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="50"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Is WTD already running on the object?"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="52"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Disable the WTD"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="54"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="54"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="WTD not running so is the choice a dock or station?"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="55"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Disable existing docks and set this dock"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="61"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="61"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="61"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="62"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="63"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="63"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="63"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Disable docks in this dock sector"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="70"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="72"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="73"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="74"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="74"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="74"/>
+      <sval type="int" val="1"/>
+      <sval type="string" val="Start the WTD task on the station"/>
+    </sval>
+    <sval type="array" size="3">
+      <sval type="int" val="79"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="5"/>
+    </sval>
+    <sval type="array" size="9">
+      <sval type="int" val="79"/>
+      <sval type="int" val="3"/>
+      <sval type="int" val="155"/>
+      <sval type="int" val="131074"/>
+      <sval type="string" val="Choice"/>
+      <sval type="int" val="131074"/>
+      <sval type="string" val="IsWtdEnabledVar"/>
+      <sval type="int" val="0"/>
+      <sval type="int" val="0"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="79"/>
+      <sval type="int" val="4"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="80"/>
+      <sval type="int" val="2"/>
+    </sval>
+    <sval type="array" size="2">
+      <sval type="int" val="80"/>
+      <sval type="int" val="2"/>
+    </sval>
+  </sval>
+  <sval type="int" val="0"/>
+</sval>
+
+</codearray>
+</script>

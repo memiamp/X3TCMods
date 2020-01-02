@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<language id="44">
+	<page id="7853" title="Messages" descr="Info Nom">
+		<t id="100">Memia WareToDock</t>
+		<t id="101">Memia WareToDock Hotkey</t>
+		<t id="102">List of WareToDock Factories</t>
+		<t id="9000">\033G%s\033X</t>
+	</page>
+</language>
