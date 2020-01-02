@@ -60,6 +60,12 @@ Configure the plugin to use a specific key. Target the SPP and push the key to r
 
 Note that removing crystals will cause a reduced output, in-line with NPC stations.
 
+## [DockAt](/Memia%20DockAt)
+Adds a ship command to dock the targeted (or player's own) ship at the nearest shipyard. 
+
+## [Memia Sector Loader](/Memia%20Sector%20Loader)
+Adds some new sectors to the map that are great for building stations in as they attract NPC visitors from all around.
+
 ## [Sector Ship Killer](/Memia%20Sector%20Ship%20Killer)
 Removes all ships and stations for the specified target race from player-owner sectors.
 
@@ -84,6 +90,9 @@ Adds several ship commands to automate common ship tasks, such as:
 Adds a new ship model to the available ships that has increased firepower and large cargo space.
 
 Note: Is not compatible with any other ship mod as it overwrites TShips.pck.
+
+## [Ware To Dock](/Memia%20WareToDock)
+Set a task to transfer wares automatically from stations to the specified dock.
 
 ## [Xenon Ship Killer](/Memia%20Xenon%20Ship%20Killer)
 Prevents Xenon ships from spawning in Xenon sectors if all Xenon space stations in that sector have been destroyed.
